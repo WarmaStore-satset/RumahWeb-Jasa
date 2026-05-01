@@ -235,8 +235,12 @@ footer {
 }
 
 .price-tag {
-  margin-top: 10px;
-  font-size: 16px;
+  display: inline-block;
+  margin-top: 15px;
+  padding: 6px 12px;
+  background: rgba(45, 212, 191, 0.1);
+  color: #2dd4bf;
+  border-radius: 20px;
+  font-size: 14px;
   font-weight: 500;
-  color: #2dd4bf; /* warna brand lo */
 }
