@@ -234,3 +234,9 @@ footer {
   border-radius: 5px;
 }
 
+.price-tag {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #2dd4bf; /* warna brand lo */
+}
