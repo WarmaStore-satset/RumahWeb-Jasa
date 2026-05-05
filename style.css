@@ -48,6 +48,43 @@ body {
     border-radius: 12px;
 }
 
+/* --- BRANDING UPGRADE --- */
+.brand-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.tagline {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    border-left: 1px solid var(--border-glass);
+    padding-left: 12px;
+}
+
+.tagline span {
+    font-weight: 400;
+}
+
+.tagline .ampersand {
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 11px;
+}
+
+
+@media (max-width: 768px) {
+    .tagline {
+        display: flex;
+    }
+}
+
+
 .nav-links {
     display: flex;
     gap: 1.5rem;
