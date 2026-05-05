@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Kami | RumahWeb</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <img src="LOGORW.png" alt="RumahWeb Logo" class="logo">
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="tentang.html" class="active">About</a>
+            <a href="project.html">Project</a>
+            <a href="contact.html" class="nav-cta">Contact</a>
+        </div>
+        <div class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <div class="sidebar" id="sidebar">
+        <a href="index.html">Home</a>
+        <a href="tentang.html">About</a>
+        <a href="project.html">Project</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <header class="hero" data-aos="fade-up">
+        <h1>Tentang RumahWeb</h1>
+        <p>RumahWeb adalah partner digital untuk pelaku UMKM dan individu kreatif yang ingin membangun personal brand yang kuat, modern, dan profesional melalui kehadiran website berstandar tinggi.</p>
+    </header>
+
+    <div class="container" style="max-width: 800px;">
+     <div class="card" data-aos="fade-up">
+         <h3>Visi Kami</h3>
+         <p>Menghadirkan website eksklusif yang tidak hanya fungsional untuk bisnis, tapi juga mampu merepresentasikan kredibilitas personal kamu di dunia digital. Kami percaya setiap talenta dan usaha layak memiliki 'rumah' online yang memukau tanpa harus terhalang biaya agensi yang mahal.</p>
+    <br>
+         <h3>Kenapa Harus Portofolio Web?</h3>
+         <p>Di era digital, link website portofolio jauh lebih berkesan daripada sekadar CV PDF. Kami membantu kamu stand-out di mata rekruter atau calon klien dengan desain yang interaktif dan mobile-friendly.</p>
+      </div>
+    </div>
+
+    <footer>
+        <p>© 2026 RumahWeb. Instagram: @rumahweb.id</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+        const hamburger = document.getElementById('hamburger');
+        const sidebar = document.getElementById('sidebar');
+        hamburger.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+        });
+    </script>
+</body>
+</html>

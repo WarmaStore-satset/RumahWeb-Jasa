@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Project | RumahWeb</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <img src="LOGORW.png" alt="RumahWeb Logo" class="logo">
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="tentang.html">About</a>
+            <a href="project.html" class="active">Project</a>
+            <a href="contact.html" class="nav-cta">Contact</a>
+        </div>
+        <div class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <div class="sidebar" id="sidebar">
+        <a href="index.html">Home</a>
+        <a href="tentang.html">About</a>
+        <a href="project.html">Project</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <header class="hero" data-aos="fade-up">
+        <h1>Project Kami</h1>
+        <p>Kumpulan karya terbaik yang telah kami bangun untuk berbagai jenis bisnis.</p>
+    </header>
+
+    <div class="container">
+        <div class="card" data-aos="fade-up" data-aos-delay="100">
+            <img src="KOPI.jpg" alt="Project 1">
+            <h3>Brand Kopi</h3>
+            <p>Landing page elegan untuk industri kopi.</p>
+            <a href="https://kopi-brand.netlify.app/" target="_blank" class="btn" style="padding: 0.5rem 1rem; font-size: 0.9rem; margin-top: 1rem;">Lihat Demo</a>
+        </div>
+        
+        <div class="card" data-aos="fade-up" data-aos-delay="200">
+            <img src="WARUNG.jpg" alt="Project 2">
+            <h3>Warung Lezat</h3>
+            <p>Katalog menu digital untuk UMKM kuliner.</p>
+            <a href="https://warung-lezat.vercel.app/" target="_blank" class="btn" style="padding: 0.5rem 1rem; font-size: 0.9rem; margin-top: 1rem;">Lihat Demo</a>
+        </div>
+
+        <div class="card" data-aos="fade-up" data-aos-delay="300">
+            <img src="PRODUCT.jpg" alt="Project 3">
+            <h3>Product Collection</h3>
+            <p>Website galeri produk yang minimalis.</p>
+            <a href="https://produk-collection.netlify.app/" target="_blank" class="btn" style="padding: 0.5rem 1rem; font-size: 0.9rem; margin-top: 1rem;">Lihat Demo</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 RumahWeb. Instagram: @rumahweb.id</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+        const hamburger = document.getElementById('hamburger');
+        const sidebar = document.getElementById('sidebar');
+        hamburger.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+        });
+    </script>
+</body>
+</html>
