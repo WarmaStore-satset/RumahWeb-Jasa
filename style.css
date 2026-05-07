@@ -32,20 +32,20 @@ body {
     top: 0;
     width: 100%;
     z-index: 1000;
+    isolation: isolate;
+
     padding: 1rem 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(15, 23, 42, 0.8);
-    backdrop-filter: blur(12px);
+    background: rgba(15, 23, 42, 0.8);                              backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-glass);
 }
 
 .logo {
     height: 50px;
     width: 100px;
-    object-fit: cover;
-    border-radius: 12px;
+    object-fit: cover;                                              border-radius: 12px;
 }
 
 /* --- BRANDING UPGRADE --- */
@@ -55,8 +55,7 @@ body {
     gap: 12px;
 }
 
-.tagline {
-    display: flex;
+.tagline {                                                          display: flex;
     flex-direction: column;
     line-height: 1.1;
     font-size: 10px;
@@ -66,7 +65,6 @@ body {
     border-left: 1px solid var(--border-glass);
     padding-left: 12px;
 }
-
 .tagline span {
     font-weight: 400;
 }
@@ -81,8 +79,7 @@ body {
 @media (max-width: 768px) {
     .tagline {
         display: flex;
-    }
-}
+    }                                                           }
 
 
 .nav-links {
@@ -90,15 +87,13 @@ body {
     gap: 1.5rem;
     align-items: center;
 }
-
 .nav-links a {
     color: var(--text-muted);
     text-decoration: none;
     font-weight: 500;
     transition: 0.3s;
     display: inline-flex;
-    align-items: center;
-    padding: 8px 16px;
+    align-items: center;                                            padding: 8px 16px;
     border-radius: 12px;
 }
 
@@ -118,8 +113,7 @@ body {
     font-weight: 700;
 }
 
-.nav-links a.active i, .sidebar a.active i {
-    color: var(--primary) !important;
+.nav-links a.active i, .sidebar a.active i {                        color: var(--primary) !important;
 }
 
 /* HOVER EFFECTS */
@@ -133,54 +127,106 @@ body {
     color: #fff;
 }
 
-/* MOBILE HAMBURGER */
+/* --- NAVIGATION UPGRADE (FLOATING MENU) --- */
+
+/* 1. Hamburger & Animasi Jadi X */
 .hamburger {
     display: none;
     cursor: pointer;
     flex-direction: column;
     gap: 5px;
-    z-index: 1100;
+
+    position: relative;
+    z-index: 10001;
 }
 
 .hamburger span {
     width: 25px;
     height: 3px;
-    background: var(--text-main);
-    transition: 0.3s;
+    background: var(--primary); /* Biar warnanya tosca konsisten */
+    transition: 0.3s ease;
 }
 
-/* SIDEBAR SYSTEM (MOBILE) */
-.sidebar {
+/* Kodingan animasi X saat diklik */
+.hamburger.toggle span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+}
+.hamburger.toggle span:nth-child(2) {
+    opacity: 0;
+}
+.hamburger.toggle span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -7px);
+}
+
+/* 2. Menu Melayang (Gantiin Sidebar Lama) */
+.nav-menu-mobile {
     position: fixed;
-    top: 0;
-    right: -100%;
-    width: 100%;
-    height: 100vh;
-    background: #0f172a;
-    z-index: 1050;
+    top: 80px;
+    right: 20px;
+    width: 220px;
+
+    background: var(--bg-card);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--border-glass);
+    border-radius: 20px;
+
+    z-index: 10000;
+
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5rem;
-    transition: 0.5s ease-in-out;
+    padding: 15px;
+    gap: 8px;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
 }
 
-.sidebar.open {
-    right: 0;
+.nav-menu-mobile.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+
+    transform: translateY(0);
 }
 
-.sidebar a {
-    font-size: 1.5rem;
-    color: var(--text-main);
+/* 3. Link di Dalam Menu (Rata Kiri) */
+.nav-menu-mobile a {
+    font-size: 1rem;
+    color: white;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 500;
     display: flex;
     align-items: center;
-    padding: 15px 30px;
-    border-radius: 15px;
-    width: 80%;
-    justify-content: center;
+    gap: 12px;      /* Jarak icon ke teks */
+    padding: 12px 15px;
+    border-radius: 12px;
+    text-align: left; /* TULISAN RATA KIRI */
+    transition: 0.2s;
+}
+
+.nav-menu-mobile a i {
+    width: 20px;    /* Biar icon sejajar */
+    color: var(--primary);
+}
+
+.nav-menu-mobile a:hover {
+    background: rgba(0, 242, 254, 0.1);
+    transform: translateX(5px);
+}
+
+/* Penanda Halaman Aktif (MOBILE) */
+.nav-menu-mobile a.active {
+    background: rgba(45, 212, 191, 0.15) !important;
+    color: var(--primary) !important;
+    font-weight: 700;
+}
+
+.nav-menu-mobile a.active i {
+    color: var(--primary) !important;
 }
 
 /* HERO SECTION */
@@ -194,8 +240,7 @@ body {
 h1 {
     font-size: clamp(2.5rem, 8vw, 4rem);
     font-weight: 700;
-    margin-bottom: 1.5rem;
-    background: linear-gradient(to right, #fff, var(--primary));
+    margin-bottom: 1.5rem;                                          background: linear-gradient(to right, #fff, var(--primary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -206,7 +251,7 @@ h1 {
     margin-bottom: 2rem;
 }
 
-/* --- KODE UPGRADE (GANTI KE SINI) --- */
+
 .price-tag {
     display: inline-block;
     padding: 0.6rem 1.8rem;
@@ -316,4 +361,173 @@ footer p {
     .nav-links { display: none; }
     .hamburger { display: flex; }
     .hero { padding-top: 150px; }
+}
+
+/* --- PRICING SECTION --- */
+.pricing-section {
+    padding: 80px 0;
+    padding-bottom: 40px;
+}
+
+.pricing-wrapper {
+    display: flex;
+    gap: 20px;
+    padding: 20px 10%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.pricing-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.pricing-card {
+    flex: 0 0 300px;
+    scroll-snap-align: center;
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+
+    border: 2px solid var(--primary);
+
+    border-radius: 24px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    transition: 0.3s;
+}
+
+.pricing-card.featured {
+
+    box-shadow: 0 10px 40px rgba(0, 242, 254, 0.2);
+    transform: scale(1.03);
+}
+
+.price {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin: 10px 0;
+}
+
+.price span {
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+
+.card-desc {
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+    color: var(--text-muted);
+    min-height: 40px;
+}
+
+.features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 25px;
+    flex-grow: 1;
+}
+
+.features li {
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.features i {
+    color: var(--primary);
+}
+
+.features li.bonus {
+    color: #ffdd59;
+    font-weight: bold;
+}
+
+.btn-select {
+    text-align: center;
+    padding: 12px;
+    background: var(--primary);
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-select:hover {
+    background: white;
+    color: var(--primary);
+}
+
+/* Responsif HP */
+@media (max-width: 768px) {
+    .pricing-wrapper {
+        padding: 20px 20px;
+    }
+    .pricing-card {
+        flex: 0 0 85%;
+        transform: none !important;
+    }
+}
+
+/* --- PROCESS SECTION UPGRADE --- */
+.process-section {
+    padding: 100px 5%;
+    background: rgba(15, 23, 42, 0.3); /* Sedikit kontras dari bg utama */
+}
+
+.process-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.process-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    padding: 40px 30px;
+    border-radius: 24px;
+    position: relative;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.process-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary);
+    box-shadow: 0 15px 40px rgba(45, 212, 191, 0.1);
+}
+
+.step-num {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 3rem;
+    font-weight: 800;
+    opacity: 0.3;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.process-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.process-card p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+}
+
+/* Responsif buat Mobile */
+@media (max-width: 768px) {
+    .process-section { padding: 60px 5%; }
+    .process-card { padding: 30px 25px; }
 }
