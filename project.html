@@ -1,36 +1,30 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Project | RumahWeb</title>
+    <meta charset="UTF-8">                                                                  <meta name="viewport" content="width=device-width, initial-scale=1.0">                  <title>Portfolio Project | RumahWeb</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-</head>
-<body>
+</head>                                                                                 <body>
 
 <nav class="navbar">
     <div class="brand-container" style="display: flex; align-items: center; gap: 12px;">
         <img src="LOGORW.png" alt="Logo" class="logo"> <div class="tagline">
-            <span>Membuat</span>
-            <span class="ampersand">&</span>
-            <span>Merawat</span>
+            <span>Membuat</span>                                                                    <span class="ampersand">&</span>                                                        <span>Merawat</span>
         </div>
     </div>
-    
-        <div class="nav-links">
+
+    <div class="nav-links">
             <a href="index.html"><i class="fas fa-home"></i> Home</a>
             <a href="tentang.html"><i class="fas fa-info-circle"></i> About</a>
             <a href="project.html" class="active"><i class="fas fa-code"></i> Project</a>
             <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
-        </div>
-        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    </div>
+        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></>
     </nav>
 
-    <div class="sidebar" id="sidebar">
-        <a href="index.html"><i class="fas fa-home"></i> Home</a>
-        <a href="tentang.html"><i class="fas fa-info-circle"></i> About</a>
+<div class="nav-menu-mobile" id="nav-menu-mobile">
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>                               <a href="tentang.html"><i class="fas fa-info-circle"></i> About</a>
         <a href="project.html" class="active"><i class="fas fa-code"></i> Project</a>
         <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
     </div>
@@ -42,47 +36,76 @@
 
     <div class="container">
         <div class="card" data-aos="fade-up" data-aos-delay="100">
-            <img src="SAMPOR.jpg" alt="Project 1">
+            <img src="https://via.placeholder.com/600x400/0a0a0a/2dd4bf?text=Personal+Portfolio+Sample" alt="Sample Portofolio">
             <h3>Personal Branding Web</h3>
             <p>Website eksklusif dengan desain minimalis dan futuristik, cocok untuk profesional, freelancer, atau mahasiswa.</p>
             <a href="https://sampel-portof.vercel.app/" target="_blank" class="btn" style="padding: 0.5rem 1rem; font-size: 0.9rem; margin-top: 1rem;">Lihat Demo</a>
         </div>
-        
+
         <div class="card" data-aos="fade-up" data-aos-delay="200">
-            <img src="KOPI.jpg" alt="Project 2">
+            <img src="KOPI.jpg" alt="Project 1">
             <h3>Brand Kopi</h3>
             <p>Landing page elegan untuk industri kopi.</p>
             <a href="https://kopi-brand.netlify.app/" target="_blank" class="btn" style="padding: 0.5rem 1rem; font-size: 0.9rem; margin-top: 1rem;">Lihat Demo</a>
         </div>
 
         <div class="card" data-aos="fade-up" data-aos-delay="300">
-            <img src="WARUNG.jpg" alt="Project 3">
+            <img src="WARUNG.jpg" alt="Project 2">
             <h3>Warung Lezat</h3>
             <p>Katalog menu digital untuk UMKM kuliner.</p>
             <a href="https://warung-lezat.vercel.app/" target="_blank" class="btn" style="padding: 0.5rem 1rem; font-size: 0.9rem; margin-top: 1rem;">Lihat Demo</a>
         </div>
 
         <div class="card" data-aos="fade-up" data-aos-delay="400">
-            <img src="PRODUCT.jpg" alt="Project 4">
+            <img src="PRODUCT.jpg" alt="Project 3">
             <h3>Product Collection</h3>
             <p>Website galeri produk yang minimalis.</p>
             <a href="https://produk-collection.netlify.app/" target="_blank" class="btn" style="padding: 0.5rem 1rem; font-size: 0.9rem; margin-top: 1rem;">Lihat Demo</a>
         </div>
-
+        </div>
     </div>
 
     <footer>
         <p>© 2026 RumahWeb. Instagram: @rumahweb.id</p>
     </footer>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({ duration: 800, once: true });
-        const hamburger = document.getElementById('hamburger');
-        const sidebar = document.getElementById('sidebar');
-        hamburger.addEventListener('click', () => {
-            sidebar.classList.toggle('open');
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    // 1. Inisialisasi Animasi Scroll (AOS)
+    AOS.init({
+        duration: 800,
+        once: true
+    });
+
+    // 2. Logika Navigasi (Hamburger ke X dan Menu Dropdown)
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu-mobile'); // Pastikan ID ini sama dengan di HTML
+
+    hamburger.addEventListener('click', () => {
+        // Toggle class buat animasi Hamburger jadi X
+        hamburger.classList.toggle('toggle');                                                   // Toggle class buat munculin menu melayang
+        navMenu.classList.toggle('active');
+    });
+
+    // 3. Nutup menu otomatis kalau kita klik di luar menu (biar makin pro)
+    document.addEventListener('click', (e) => {
+        if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+            hamburger.classList.remove('toggle');
+            navMenu.classList.remove('active');
+        }
+    });
+
+    // 4. Nutup menu kalau salah satu link di klik (buat navigasi smooth)
+    const navLinks = document.querySelectorAll('.nav-menu-mobile a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('toggle');
+            navMenu.classList.remove('active');
         });
+    });
+</script>
+
+
     </script>
 </body>
 </html>
