@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pemesanan - RumahWeb</title>
+    <link rel="stylesheet" href="style.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .order-container {
+            padding: 150px 5% 50px;
+            display: flex;
+            justify-content: center;
+        }
+        .order-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--border-glass);
+            padding: 40px;
+            border-radius: 24px;
+            width: 100%;
+            max-width: 500px;
+        }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; color: var(--text-muted); font-size: 0.9rem; }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-glass);
+            border-radius: 12px;
+            color: white;
+            outline: none;
+            transition: 0.3s;
+        }
+        .form-group input:focus { border-color: var(--primary); }
+        .paket-display {
+            background: rgba(45, 212, 191, 0.1);
+            color: var(--primary);
+            padding: 10px;
+            border-radius: 10px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+            border: 1px dashed var(--primary);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="order-container">
+        <div class="order-card">
+            <h2 style="margin-bottom: 10px;">Lengkapi Data</h2>
+            <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 0.9rem;">
+                Silahkan isi data untuk paket:
+            </p>
+
+            <div id="displayPaket" class="paket-display">Memuat paket...</div>
+
+            <form id="orderForm">
+                <div class="form-group">
+                    <label>Nama Lengkap / Bisnis</label>
+                    <input type="text" id="nama" placeholder="Contoh: Budi - Bakso Solo" required>
+                </div>
+                <div class="form-group">
+                    <label>Nomor WhatsApp</label>
+                    <input type="number" id="wa" placeholder="08123xxxx" required>
+                </div>
+                <div class="form-group">
+                    <label>Keperluan Web</label>
+                    <input type="text" id="domain" placeholder="Contoh: Portofolio/Web usaha" required>
+                </div>
+                <div class="form-group">
+                    <label>Referensi Web</label>
+                    <textarea id="pesan" rows="4" placeholder="Web apa yang ingin dijadikan referensi web (sertakan link web referensi)" required></textarea>
+                </div>
+
+                <button type="submit" class="btn" style="width: 100%; border: none; cursor: pointer;">
+                    Kirim <i class="fab fa-whatsapp"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // 1. Ambil nama paket dari URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const namaPaket = urlParams.get('paket') || 'Dasar';
+        document.getElementById('displayPaket').innerText = "Paket: " + namaPaket;
+
+        // 2. Logic kirim ke WhatsApp
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const nama = document.getElementById('nama').value;
+            const wa = document.getElementById('wa').value;
+            const domain = document.getElementById('domain').value;
+            const pesan = document.getElementById('pesan').value;
+
+            const nomorAdmin = "62883159448087"; //
+
+            const text = `Halo RumahWeb, saya ingin pesan jasa buat website.%0A%0A` +
+                         `*Data Pemesan:*%0A` +
+                         `- Nama: ${nama}%0A` +
+                         `- No WA: ${wa}%0A` +
+                         `- Paket: ${namaPaket}%0A` +
+                         `- Domain: ${domain}%0A` +
+                         `- Keperluan: ${pesan}%0A%0A` +
+                         `Ditunggu konsultasi lanjutnya, Bre!`;
+
+            window.open(`https://wa.me/6283159448087?text=${text}`, '_blank');
+        });
+    </script>
+</body>
+</html>
