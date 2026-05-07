@@ -18,17 +18,17 @@
             <span>Merawat</span>
         </div>
     </div>
-    
-        <div class="nav-links">
+
+    <div class="nav-links">
             <a href="index.html"><i class="fas fa-home"></i> Home</a>
             <a href="tentang.html" class="active"><i class="fas fa-info-circle"></i> About</a>
             <a href="project.html"><i class="fas fa-code"></i> Project</a>
             <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
-        </div>
-        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    </div>
+        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></>
     </nav>
 
-    <div class="sidebar" id="sidebar">
+<div class="nav-menu-mobile" id="nav-menu-mobile">
         <a href="index.html"><i class="fas fa-home"></i> Home</a>
         <a href="tentang.html" class="active"><i class="fas fa-info-circle"></i> About</a>
         <a href="project.html"><i class="fas fa-code"></i> Project</a>
@@ -64,23 +64,52 @@
     <p style="font-style: italic; font-size: 0.9rem; color: var(--text-muted); margin-top: 15px;">
         "Karena website adalah aset digital yang harus tetap hidup dan relevan setiap saat."
     </p>
-
+        </div>
       </div>
-     </div>
     </div>
 
     <footer>
         <p>© 2026 RumahWeb. Instagram: @rumahweb.id</p>
     </footer>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({ duration: 800, once: true });
-        const hamburger = document.getElementById('hamburger');
-        const sidebar = document.getElementById('sidebar');
-        hamburger.addEventListener('click', () => {
-            sidebar.classList.toggle('open');
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    // 1. Inisialisasi Animasi Scroll (AOS)
+    AOS.init({
+        duration: 800,
+        once: true
+    });
+
+    // 2. Logika Navigasi (Hamburger ke X dan Menu Dropdown)
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu-mobile'); // Pastikan ID ini sama dengan di HTML
+
+    hamburger.addEventListener('click', () => {
+        // Toggle class buat animasi Hamburger jadi X
+        hamburger.classList.toggle('toggle');
+        // Toggle class buat munculin menu melayang
+        navMenu.classList.toggle('active');
+    });
+
+    // 3. Nutup menu otomatis kalau kita klik di luar menu (biar makin pro)
+    document.addEventListener('click', (e) => {
+        if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+            hamburger.classList.remove('toggle');
+            navMenu.classList.remove('active');
+        }
+    });
+
+    // 4. Nutup menu kalau salah satu link di klik (buat navigasi smooth)
+    const navLinks = document.querySelectorAll('.nav-menu-mobile a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('toggle');
+            navMenu.classList.remove('active');
         });
+    });
+</script>
+
+
     </script>
 </body>
 </html>
