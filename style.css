@@ -240,9 +240,10 @@ body {
 h1 {
     font-size: clamp(2.5rem, 8vw, 4rem);
     font-weight: 700;
-    margin-bottom: 1.5rem;                                          background: linear-gradient(to right, #fff, var(--primary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    margin-bottom: 1.5rem;                                     
+    color: #ffffff;
+    background: none;
+    -webkit-text-fill-color: initial;
 }
 
 .hero p {
@@ -541,3 +542,21 @@ footer p {
     .process-section { padding: 60px 5%; }
     .process-card { padding: 30px 25px; }
 }
+
+/* =========================================
+EFEK NYETIK HERO SECTION
+========================================= */
+#text-rotator {
+    color: var(--primary);
+    -webkit-text-fill-color: var(--primary);
+    border-right: 3px solid var(--primary);
+    padding-right: 5px;
+    animation: blink 0.75s step-end infinite;
+    display: inline-block;
+}
+
+@keyframes blink {
+    from, to { border-color: transparent; }
+    50% { border-color: var(--primary); }
+}
+
